@@ -2,17 +2,10 @@
 
 **<ins>fineCNN** is a deep learning network that can be used for both classification and regression tasks. It's architecture implements a dual module **CNN** block followed by a feed forword layer (**FFN**) where finally a single logit is outputed. The output logit can be used for regression tasks as well as to perform sample classification. The model was structured to work with genomic data where **1D** signal tracks are used as input to the model. Each signal track can be used as an additional channel to the model input tensor. 
 
-Genomic signal can appear as long distance peaks that span long genomic regions or as more narrow peaks that spann shorter regions but follow a very specific distribution even at the nucleosome level. 
+Genomic signal can appear as long distance peaks that spann long genomic regions or as more narrow peaks that spann shorter regions but follow a very specific distribution even at the nucleosome level. Taking this into acount fineCNN was implented to process a single input with two different convolution operations with user defined parameters. The input once is processed through a convolution block with a big kernel size to capture the wide distributed signals and once with a smaller kernel size to capture finer signal distribution patterns.
 
- <figure>
-  <img src="./images/histone_mod_viz.png" alt="A sunset" width="600">
-</figure>
 
-Taking this into acount fineCNN was implented to process a single input with two different convolution operations with user defined parameters. The input once is processed through a convolution block with a big kernel size to capture the wide distributed signals and once with a smaller kernel size to capture finer signal distribution patterns.
-
- <figure>
-  <img src="./images/fineCNN.png" alt="A sunset" width="400">
-</figure>
+The residual block is optional. If the parameter ```res_blocks``` that controls it is set to ```False``` instead of a residual block a simple CNN is used. The GRU option ```use_gru``` is optional as well. In the case where the option is set to ```False``` the tensor that comes out of the convolution block is directed to the final feed forward layer.
 
 
 The model comes along with the trainer where the type of the task is defined. 
